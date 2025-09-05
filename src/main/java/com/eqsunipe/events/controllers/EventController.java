@@ -1,6 +1,9 @@
 package com.eqsunipe.events.controllers;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,5 +26,10 @@ public class EventController {
   @PostMapping
   public ResponseEntity<Event> create(@Valid @RequestBody EventCreateDTO dto) {
     return ResponseEntity.ok(eventService.createEvent(dto));
+  }
+  @GetMapping
+  public ResponseEntity<Page<Event>> getAllEvents(Pageable pageable) {
+    Page<Event> events = eventService.findAll(pageable);
+    return ResponseEntity.ok(events);
   }
 }

@@ -4,6 +4,9 @@ import com.eqsunipe.events.dtos.EventCreateDTO;
 import com.eqsunipe.events.entities.Event;
 import com.eqsunipe.events.repositories.EventRepository;
 import jakarta.transaction.Transactional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,5 +26,9 @@ public class EventService {
         newEvent.setCity(dto.getCity());
         newEvent.setUf(dto.getUf());
         return eventRepository.save(newEvent);
+    }
+    @Transactional
+    public Page<Event> findAll(Pageable pageable) {
+        return eventRepository.findAll(pageable);
     }
 }
