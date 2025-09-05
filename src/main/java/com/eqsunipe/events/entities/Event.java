@@ -17,4 +17,8 @@ public class Event {
     private String local;
     private String city;
     private String uf;
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 }
